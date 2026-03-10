@@ -1,0 +1,69 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: snappymail
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: snappymail
+  template:
+    metadata:
+      labels:
+        app: snappymail
+    spec:
+      containers:
+      - name: snappymail
+        image: djmaze/snappymail:latest
+        ports:
+        - containerPort: 8888
+        env:
+        - name: SNAPPYMAIL_ADMIN_PASSWORD
+          value: "ChangeMe123!"
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/snappymail
+      volumes:
+      - name: data
+        hostPath:
+          path: /var/lib/snappymail-data
+          type: DirectoryOrCreate
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: snappymail
+  namespace: default
+spec:
+  selector:
+    app: snappymail
+  ports:
+  - port: 80
+    targetPort: 8888
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: snappymail
+  namespace: default
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure
+spec:
+  ingressClassName: traefik
+  tls:
+  - hosts:
+    - claude.dzeksn.com
+    secretName: claude-tls
+  rules:
+  - host: claude.dzeksn.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: snappymail
+            port:
+              number: 80

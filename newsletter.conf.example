@@ -1,0 +1,25 @@
+# Newsletter Konfiguration
+# Kopiere diese Datei nach newsletter.conf und passe die Werte an:
+#   cp newsletter.conf.example newsletter.conf
+#
+# Alle Werte koennen auch per CLI-Flag ueberschrieben werden.
+
+# Domain und IMAP
+domain = claude.dzeksn.com
+imap_host = localhost
+imap_port = 143
+imap_user = info@claude.dzeksn.com
+unsubscribe_user = abmelden@claude.dzeksn.com
+
+# IMAP Passwort (fuer Abmelde-Check und E-Mail lesen)
+# WICHTIG: Diese Datei NICHT committen wenn Passwort gesetzt!
+password =
+
+# Absender-Defaults
+from_name =
+from_email =
+reply_to =
+
+# Versand-Timing
+delay = 3.0
+jitter = 2.0

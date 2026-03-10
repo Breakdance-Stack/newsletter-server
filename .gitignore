@@ -1,0 +1,15 @@
+# Sensible / lokale Daten
+ZUGANGSDATEN.txt
+LAST.TXT
+createLeads/
+contact_log.json
+leads_test.csv
+newsletter.conf
+.env
+
+# Logs
+*.log
+
+# Python
+__pycache__/
+*.pyc
