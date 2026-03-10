@@ -57,9 +57,12 @@ bash setup.sh
 Alles laeuft ueber **ein einziges Script** mit Unterbefehlen.
 Du musst nicht mehr mehrere Scripts aufrufen - `newsletter.py` erledigt alles.
 
-### Konfiguration einrichten
+### Konfiguration
 
-Erstelle eine Konfigurationsdatei, damit du nicht jedes Mal alle Flags tippen musst:
+Die `newsletter.conf` wird bei der Installation durch `setup.sh` **automatisch erstellt** -
+mit allen Daten die du bei der Installation angibst (Domain, Passwort, Absendername etc.).
+
+Falls du den Server manuell eingerichtet hast oder die Config anpassen willst:
 
 ```bash
 cp newsletter.conf.example newsletter.conf
